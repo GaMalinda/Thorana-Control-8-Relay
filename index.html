@@ -8,7 +8,6 @@
         :root { --gold: #d4af37; --bg: #0a0a0a; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: var(--bg); color: white; margin: 0; padding: 10px; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* Login Screen Style */
         #login-screen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; transition: opacity 0.6s ease; }
         .login-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); width: 85%; max-width: 350px; text-align: center; }
         .login-card h2 { color: var(--gold); margin-bottom: 25px; font-size: 22px; }
@@ -16,13 +15,13 @@
         .login-card input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
         .login-btn { background: var(--gold); color: black; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
         
-        /* Controller Content (Initially Hidden) */
         #main-content { display: none; opacity: 0; transition: opacity 0.8s ease; width: 100%; }
 
         h2 { color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); margin-bottom: 15px; }
         .container { position: relative; display: inline-block; padding: 0; border: 2px solid #333; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 700px; line-height: 0; }
         .thorana-img { width: 100%; height: auto; display: block; border-radius: 12px; -webkit-user-drag: none; pointer-events: none; }
         
+        /* Font size change based on screen width */
         .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 3vw; }
         @media (min-width: 700px) { .btn { font-size: 18px; } }
         .circle { border-radius: 50%; } 
@@ -42,28 +41,27 @@
         .tsda-text { font-size: 20px; font-weight: bold; color: var(--gold); margin: 5px 0; letter-spacing: 1px; }
         .gm-text { font-size: 12px; color: #666; margin: 2px 0; }
 
-        /* Responsive Percentage Positions */
-        .p1 { top: 31.3%; left: 50.4%; width: 77px; height: 77px; }
-.p2 { top: 85.5%; left: 10.6%; width: 47.5938px; height: 65.0938px; }
-.p8 { top: 85.7%; left: 90.6%; width: 47.5938px; height: 65.0938px; }
-.p3l { top: 62.1%; left: 27.8%; width: 70px; height: 70px; }
-.p3m { top: 67.1%; left: 42.3%; width: 70px; height: 70px; }
-.p3r { top: 66.9%; left: 57.9%; width: 70px; height: 70px; }
-.p3x { top: 62.1%; left: 72.4%; width: 70px; height: 70px; }
-.p4l { top: 56.3%; left: 8%; width: 50.3906px; height: 70px; }
-.p4r { top: 56%; left: 92.4%; width: 50.3906px; height: 70px; }
-.p5l { top: 27.4%; left: 27.6%; width: 68.5938px; height: 68.5938px; }
-.p5r { top: 27.4%; left: 72.8%; width: 68.5938px; height: 68.5938px; }
-.p6l { top: 47.3%; left: 28.5%; width: 47.5938px; height: 65.0938px; }
-.p6r { top: 47.3%; left: 71.7%; width: 47.5938px; height: 65.0938px; }
-.p7l { top: 16.5%; left: 40.7%; width: 59.5px; height: 59.5px; }
-.p7r { top: 17.2%; left: 60%; width: 59.5px; height: 59.5px; }
+        /* ALL Sizes and Positions converted to % for perfect responsiveness */
+        .p1 { top: 31.3%; left: 50.4%; width: 11%; height: 11%; }
+        .p2 { top: 85.5%; left: 10.6%; width: 6.8%; height: 9.3%; }
+        .p8 { top: 85.7%; left: 90.6%; width: 6.8%; height: 9.3%; }
+        .p3l { top: 62.1%; left: 27.8%; width: 10%; height: 10%; }
+        .p3m { top: 67.1%; left: 42.3%; width: 10%; height: 10%; }
+        .p3r { top: 66.9%; left: 57.9%; width: 10%; height: 10%; }
+        .p3x { top: 62.1%; left: 72.4%; width: 10%; height: 10%; }
+        .p4l { top: 56.3%; left: 8%; width: 7.2%; height: 10%; }
+        .p4r { top: 56%; left: 92.4%; width: 7.2%; height: 10%; }
+        .p5l { top: 27.4%; left: 27.6%; width: 9.8%; height: 9.8%; }
+        .p5r { top: 27.4%; left: 72.8%; width: 9.8%; height: 9.8%; }
+        .p6l { top: 47.3%; left: 28.5%; width: 6.8%; height: 9.3%; }
+        .p6r { top: 47.3%; left: 71.7%; width: 6.8%; height: 9.3%; }
+        .p7l { top: 16.5%; left: 40.7%; width: 8.5%; height: 8.5%; }
+        .p7r { top: 17.2%; left: 60%; width: 8.5%; height: 8.5%; }
 
     </style>
 </head>
 <body>
-
-    <!-- Login Section -->
+    <!-- HTML & Scripts ඒ විදිහටම තියෙනවා... -->
     <div id="login-screen">
         <div class="login-card">
             <h2>Smart Thorana Pro 🏮</h2>
@@ -74,10 +72,8 @@
         </div>
     </div>
 
-    <!-- Main Controller Section -->
     <div id="main-content">
         <h2>Smart Thorana Pro Controller 🏮</h2>
-        
         <div id='editor-controls'>
             Selected: <span id='selName' style='color:var(--gold)'>None</span><br>
             <button class='ctrl-btn' onclick='changeSize(2)'>SIZE +</button>
@@ -86,7 +82,6 @@
 
         <div class='container' id='mainContainer'>
             <img src='https://raw.githubusercontent.com/GaMalinda/Thorana-Control-8-Relay/main/WhatsApp%20Image%202026-05-03%20at%2010.15.32.jpeg' class='thorana-img' alt="Thorana Background">
-            
             <div class='btn circle off p1' data-id='0' data-cls='p1' onclick='handleBtnClick(this)'>1</div>
             <div class='btn square off p2' data-id='1' data-cls='p2' onclick='handleBtnClick(this)'>2</div>
             <div class='btn square off p8' data-id='7' data-cls='p8' onclick='handleBtnClick(this)'>8</div>
@@ -111,7 +106,6 @@
             <div class='gm-text'>Powered by GM Global Technology</div>
             <div style="font-size: 10px; color: #ffffff; margin-top: 5px;">077 180 7892</div>
         </div>
-
         <div id='log-box'><button class='ctrl-btn' style='width:100%' onclick='copyToClipboard()'>Copy Code</button><pre id='coords'></pre></div>
     </div>
 
@@ -161,12 +155,10 @@
             let id = el.getAttribute('data-id');
             let isCurrentlyOn = el.classList.contains('on');
             let newStatus = !isCurrentlyOn;
-
             document.querySelectorAll(`[data-id='${id}']`).forEach(b => {
                 if(newStatus) { b.classList.add('on'); b.classList.remove('off'); }
                 else { b.classList.remove('on'); b.classList.add('off'); }
             });
-
             fetch(`${firebaseConfig.databaseURL}/relays/r${parseInt(id)+1}.json?auth=${firebaseConfig.apiKey}`, {
                 method: 'PUT', body: JSON.stringify(newStatus)
             });
@@ -178,11 +170,30 @@
     }
 
     function unlockEditor() { if(prompt('Admin Key:') == '4321') { editMode = true; document.getElementById('log-box').style.display='block'; document.getElementById('editor-controls').style.display='block'; document.getElementById('lockBtn').style.display='none'; updateLogs(); } }
-    function changeSize(d) { if(!selectedEl) return; let w = parseInt(selectedEl.style.width || getComputedStyle(selectedEl).width) + d; selectedEl.style.width = w + 'px'; selectedEl.style.height = (selectedEl.classList.contains('square') ? Math.round(w*1.37) : w) + 'px'; updateLogs(); }
+    
+    // Updated changeSize for % support
+    function changeSize(d) { 
+        if(!selectedEl) return; 
+        const r = container.getBoundingClientRect();
+        let currentW_px = selectedEl.offsetWidth;
+        let newW_pct = ((currentW_px + d) / r.width * 100).toFixed(1);
+        let newH_pct = ((selectedEl.offsetHeight + (selectedEl.classList.contains('square') ? d*1.37 : d)) / r.height * 100).toFixed(1);
+        
+        selectedEl.style.width = newW_pct + '%';
+        selectedEl.style.height = newH_pct + '%';
+        updateLogs(); 
+    }
     
     const container = document.getElementById('mainContainer');
     container.onpointerdown = e => { if(editMode && e.target.classList.contains('btn')) activeBtn = e.target; };
-    container.onpointermove = e => { if(editMode && activeBtn) { const r = container.getBoundingClientRect(); activeBtn.style.left = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%'; activeBtn.style.top = ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%'; updateLogs(); } };
+    container.onpointermove = e => { 
+        if(editMode && activeBtn) { 
+            const r = container.getBoundingClientRect(); 
+            activeBtn.style.left = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%'; 
+            activeBtn.style.top = ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%'; 
+            updateLogs(); 
+        } 
+    };
     container.onpointerup = e => { activeBtn = null; };
 
     function updateLogs() {
