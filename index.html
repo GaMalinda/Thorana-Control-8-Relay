@@ -8,7 +8,6 @@
         :root { --gold: #d4af37; --bg: #0a0a0a; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: var(--bg); color: white; margin: 0; padding: 10px; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* Login Screen Style */
         #login-screen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; transition: opacity 0.6s ease; }
         .login-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); width: 85%; max-width: 350px; text-align: center; }
         .login-card h2 { color: var(--gold); margin-bottom: 25px; font-size: 22px; }
@@ -16,20 +15,19 @@
         .login-card input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
         .login-btn { background: var(--gold); color: black; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
         
-        /* Controller Content (Initially Hidden) */
         #main-content { display: none; opacity: 0; transition: opacity 0.8s ease; width: 100%; }
 
         h2 { color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); margin-bottom: 15px; }
-        .container { position: relative; display: inline-block; padding: 10px; border: 2px solid #333; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .thorana-img { width: 100%; max-width: 700px; display: block; border-radius: 8px; -webkit-user-drag: none; pointer-events: none; }
+        .container { position: relative; display: inline-block; padding: 0; border: 2px solid #333; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 700px; line-height: 0; }
+        .thorana-img { width: 100%; height: auto; display: block; border-radius: 12px; -webkit-user-drag: none; pointer-events: none; }
         
-        .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 2.5vw; }
+        @media (min-width: 700px) { .btn { font-size: 18px; } }
         .circle { border-radius: 50%; } 
-        .square { border-radius: 10px; }
+        .square { border-radius: 10%; }
 
-        .on { background: #2ecc71 !important; box-shadow: 0 0 20px #2ecc71, 0 0 40px rgba(46, 204, 113, 0.6); border-color: #fff !important; transform: translate(-50%, -50%) scale(1.1); z-index: 5; } 
+        .on { background: #2ecc71 !important; box-shadow: 0 0 20px #2ecc71; border-color: #fff !important; transform: translate(-50%, -50%) scale(1.1); z-index: 5; } 
         .off { background: rgba(0,0,0,0.7); border-color: rgba(255,255,255,0.4); }
-        .btn:active { transform: translate(-50%, -50%) scale(0.85); opacity: 0.9; }
 
         .selected { border: 3px solid #ffee00 !important; box-shadow: 0 0 25px #ffee00 !important; z-index: 100; }
         #editor-controls { margin-bottom: 15px; display: none; background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid var(--gold); }
@@ -41,27 +39,26 @@
         .tsda-text { font-size: 20px; font-weight: bold; color: var(--gold); margin: 5px 0; letter-spacing: 1px; }
         .gm-text { font-size: 12px; color: #666; margin: 2px 0; }
 
-        /* Positions */
-        .p1 { top: 231.8px; left: 361.4px; width: 75px; height: 75px; }
-        .p2 { top: 609.8px; left: 79.9px; width: 44px; height: 60px; }
-        .p8 { top: 610.5px; left: 643.7px; width: 44px; height: 60px; }
-        .p3l { top: 445px; left: 203.8px; width: 64px; height: 64px; }
-        .p3m { top: 480.2px; left: 306.7px; width: 64px; height: 64px; }
-        .p3r { top: 479.5px; left: 414px; width: 64px; height: 64px; }
-        .p3x { top: 445.7px; left: 517px; width: 64px; height: 64px; }
-        .p4l { top: 55.4%; left: 9.5%; width: 46px; height: 63px; }
-        .p4r { top: 55.7%; left: 91%; width: 46px; height: 63px; }
-        .p5l { top: 28.2%; left: 28.1%; width: 64px; height: 64px; }
-        .p5r { top: 203px; left: 519.8px; width: 64px; height: 64px; }
-        .p6l { top: 47.4%; left: 28.7%; width: 44px; height: 60px; }
-        .p6r { top: 46.8%; left: 71.2%; width: 44px; height: 60px; }
-        .p7l { top: 125.3px; left: 292.3px; width: 54px; height: 54px; }
-        .p7r { top: 125.3px; left: 430.5px; width: 54px; height: 54px; }
+        /* Responsive Positions using Percentage */
+        .p1 { top: 32.5%; left: 51.5%; width: 11.5%; height: 11.5%; }
+        .p2 { top: 85.5%; left: 11.4%; width: 6.8%; height: 9.3%; }
+        .p8 { top: 85.5%; left: 91.9%; width: 6.8%; height: 9.3%; }
+        .p3l { top: 62.5%; left: 29%; width: 10%; height: 10%; }
+        .p3m { top: 67.5%; left: 43.8%; width: 10%; height: 10%; }
+        .p3r { top: 67.5%; left: 59.2%; width: 10%; height: 10%; }
+        .p3x { top: 62.5%; left: 74%; width: 10%; height: 10%; }
+        .p4l { top: 52.5%; left: 12.5%; width: 7.2%; height: 10%; }
+        .p4r { top: 52.5%; left: 91.5%; width: 7.2%; height: 10%; }
+        .p5l { top: 28.5%; left: 33.2%; width: 9.8%; height: 9.8%; }
+        .p5r { top: 28.5%; left: 69.8%; width: 9.8%; height: 9.8%; }
+        .p6l { top: 41.5%; left: 32.2%; width: 6.8%; height: 9.3%; }
+        .p6r { top: 41.5%; left: 71.5%; width: 6.8%; height: 9.3%; }
+        .p7l { top: 18.5%; left: 41.5%; width: 8.5%; height: 8.5%; }
+        .p7r { top: 18.5%; left: 61.5%; width: 8.5%; height: 8.5%; }
     </style>
 </head>
 <body>
 
-    <!-- Login Section -->
     <div id="login-screen">
         <div class="login-card">
             <h2>Smart Thorana Pro 🏮</h2>
@@ -72,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Main Controller Section -->
     <div id="main-content">
         <h2>Smart Thorana Pro Controller 🏮</h2>
         
@@ -107,7 +103,7 @@
             <div class='tsda-text'>TSDA ENGINEERING</div>
             <div class='tsda-text' style="font-size: 16px;">071 200 1813</div>
             <div class='gm-text'>Powered by GM Global Technology</div>
-           <div style="font-size: 8px; color: #ffffff; margin-top: 5px;">077 180 7892</div>
+            <div style="font-size: 10px; color: #ffffff; margin-top: 5px;">077 180 7892</div>
         </div>
 
         <div id='log-box'><button class='ctrl-btn' style='width:100%' onclick='copyToClipboard()'>Copy Code</button><pre id='coords'></pre></div>
@@ -159,12 +155,6 @@
             let id = el.getAttribute('data-id');
             let isCurrentlyOn = el.classList.contains('on');
             let newStatus = !isCurrentlyOn;
-
-            document.querySelectorAll(`[data-id='${id}']`).forEach(b => {
-                if(newStatus) { b.classList.add('on'); b.classList.remove('off'); }
-                else { b.classList.remove('on'); b.classList.add('off'); }
-            });
-
             fetch(`${firebaseConfig.databaseURL}/relays/r${parseInt(id)+1}.json?auth=${firebaseConfig.apiKey}`, {
                 method: 'PUT', body: JSON.stringify(newStatus)
             });
@@ -176,7 +166,7 @@
     }
 
     function unlockEditor() { if(prompt('Admin Key:') == '4321') { editMode = true; document.getElementById('log-box').style.display='block'; document.getElementById('editor-controls').style.display='block'; document.getElementById('lockBtn').style.display='none'; updateLogs(); } }
-    function changeSize(d) { if(!selectedEl) return; let w = parseInt(selectedEl.style.width || getComputedStyle(selectedEl).width) + d; selectedEl.style.width = w + 'px'; selectedEl.style.height = (selectedEl.classList.contains('square') ? Math.round(w*1.37) : w) + 'px'; updateLogs(); }
+    function changeSize(d) { if(!selectedEl) return; let w = parseFloat(selectedEl.style.width || getComputedStyle(selectedEl).width) + d; selectedEl.style.width = w + 'px'; selectedEl.style.height = (selectedEl.classList.contains('square') ? Math.round(w*1.37) : w) + 'px'; updateLogs(); }
     
     const container = document.getElementById('mainContainer');
     container.onpointerdown = e => { if(editMode && e.target.classList.contains('btn')) activeBtn = e.target; };
