@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+    <title>Smart Thorana Pro Controller 🏮</title>
+    <style>
+        :root { --gold: #d4af37; --bg: #0a0a0a; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: var(--bg); color: white; margin: 0; padding: 10px; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* Login Screen Style */
+        #login-screen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; transition: opacity 0.6s ease; }
+        .login-card { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.8); width: 85%; max-width: 350px; text-align: center; }
+        .login-card h2 { color: var(--gold); margin-bottom: 25px; font-size: 22px; }
+        .login-card input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #444; background: #000; color: white; font-size: 18px; text-align: center; box-sizing: border-box; outline: none; }
+        .login-card input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+        .login-btn { background: var(--gold); color: black; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        
+        /* Controller Content (Initially Hidden) */
+        #main-content { display: none; opacity: 0; transition: opacity 0.8s ease; width: 100%; }
+
+        h2 { color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); margin-bottom: 15px; }
+        .container { position: relative; display: inline-block; padding: 10px; border: 2px solid #333; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .thorana-img { width: 100%; max-width: 700px; display: block; border-radius: 8px; -webkit-user-drag: none; pointer-events: none; }
+        
+        .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .circle { border-radius: 50%; } 
+        .square { border-radius: 10px; }
+
+        .on { background: #2ecc71 !important; box-shadow: 0 0 20px #2ecc71, 0 0 40px rgba(46, 204, 113, 0.6); border-color: #fff !important; transform: translate(-50%, -50%) scale(1.1); z-index: 5; } 
+        .off { background: rgba(0,0,0,0.7); border-color: rgba(255,255,255,0.4); }
+        .btn:active { transform: translate(-50%, -50%) scale(0.85); opacity: 0.9; }
+
+        .selected { border: 3px solid #ffee00 !important; box-shadow: 0 0 25px #ffee00 !important; z-index: 100; }
+        #editor-controls { margin-bottom: 15px; display: none; background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid var(--gold); }
+        .ctrl-btn { background: var(--gold); color: black; border: none; padding: 12px 18px; margin: 5px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        #log-box { margin-top: 20px; background: #111; padding: 15px; border-radius: 8px; display: none; text-align: left; border: 1px solid #444; }
+        pre { background: #000; padding: 15px; color: #0f0; font-size: 11px; overflow-x: auto; }
+
+        .footer-container { margin-top: 30px; padding: 20px; border-top: 1px solid #222; width: 100%; }
+        .tsda-text { font-size: 20px; font-weight: bold; color: var(--gold); margin: 5px 0; letter-spacing: 1px; }
+        .gm-text { font-size: 12px; color: #666; margin: 2px 0; }
+
+        /* Positions */
+        .p1 { top: 231.8px; left: 361.4px; width: 75px; height: 75px; }
+        .p2 { top: 609.8px; left: 79.9px; width: 44px; height: 60px; }
+        .p8 { top: 610.5px; left: 643.7px; width: 44px; height: 60px; }
+        .p3l { top: 445px; left: 203.8px; width: 64px; height: 64px; }
+        .p3m { top: 480.2px; left: 306.7px; width: 64px; height: 64px; }
+        .p3r { top: 479.5px; left: 414px; width: 64px; height: 64px; }
+        .p3x { top: 445.7px; left: 517px; width: 64px; height: 64px; }
+        .p4l { top: 55.4%; left: 9.5%; width: 46px; height: 63px; }
+        .p4r { top: 55.7%; left: 91%; width: 46px; height: 63px; }
+        .p5l { top: 28.2%; left: 28.1%; width: 64px; height: 64px; }
+        .p5r { top: 203px; left: 519.8px; width: 64px; height: 64px; }
+        .p6l { top: 47.4%; left: 28.7%; width: 44px; height: 60px; }
+        .p6r { top: 46.8%; left: 71.2%; width: 44px; height: 60px; }
+        .p7l { top: 125.3px; left: 292.3px; width: 54px; height: 54px; }
+        .p7r { top: 125.3px; left: 430.5px; width: 54px; height: 54px; }
+    </style>
+</head>
+<body>
+
+    <!-- Login Section -->
+    <div id="login-screen">
+        <div class="login-card">
+            <h2>Smart Thorana Pro 🏮</h2>
+            <p style="color: #666; font-size: 14px; margin-bottom: 20px;">පාලක පුවරුවට පිවිසීමට ඔබගේ අංකය ඇතුළත් කරන්න</p>
+            <input type="tel" id="phoneInput" placeholder="07XXXXXXXX" maxlength="10">
+            <button class="login-btn" onclick="checkLogin()">LOGIN</button>
+            <p id="error-msg" style="color: #ff4757; font-size: 13px; margin-top: 10px; display: none;">අංකය වැරදියි. නැවත උත්සාහ කරන්න.</p>
+        </div>
+    </div>
+
+    <!-- Main Controller Section -->
+    <div id="main-content">
+        <h2>Smart Thorana Pro Controller 🏮</h2>
+        
+        <div id='editor-controls'>
+            Selected: <span id='selName' style='color:var(--gold)'>None</span><br>
+            <button class='ctrl-btn' onclick='changeSize(2)'>SIZE +</button>
+            <button class='ctrl-btn' onclick='changeSize(-2)'>SIZE -</button>
+        </div>
+
+        <div class='container' id='mainContainer'>
+            <img src='https://raw.githubusercontent.com/GaMalinda/Thorana-Control-8-Relay/main/WhatsApp%20Image%202026-05-03%20at%2010.15.32.jpeg' class='thorana-img' alt="Thorana Background">
+            
+            <div class='btn circle off p1' data-id='0' data-cls='p1' onclick='handleBtnClick(this)'>1</div>
+            <div class='btn square off p2' data-id='1' data-cls='p2' onclick='handleBtnClick(this)'>2</div>
+            <div class='btn square off p8' data-id='7' data-cls='p8' onclick='handleBtnClick(this)'>8</div>
+            <div class='btn circle off p3l' data-id='2' data-cls='p3l' onclick='handleBtnClick(this)'>3</div>
+            <div class='btn circle off p3m' data-id='2' data-cls='p3m' onclick='handleBtnClick(this)'>3</div>
+            <div class='btn circle off p3r' data-id='2' data-cls='p3r' onclick='handleBtnClick(this)'>3</div>
+            <div class='btn circle off p3x' data-id='2' data-cls='p3x' onclick='handleBtnClick(this)'>3</div>
+            <div class='btn square off p4l' data-id='3' data-cls='p4l' onclick='handleBtnClick(this)'>4</div>
+            <div class='btn square off p4r' data-id='3' data-cls='p4r' onclick='handleBtnClick(this)'>4</div>
+            <div class='btn circle off p5l' data-id='4' data-cls='p5l' onclick='handleBtnClick(this)'>5</div>
+            <div class='btn circle off p5r' data-id='4' data-cls='p5r' onclick='handleBtnClick(this)'>5</div>
+            <div class='btn square off p6l' data-id='5' data-cls='p6l' onclick='handleBtnClick(this)'>6</div>
+            <div class='btn square off p6r' data-id='5' data-cls='p6r' onclick='handleBtnClick(this)'>6</div>
+            <div class='btn circle off p7l' data-id='6' data-cls='p7l' onclick='handleBtnClick(this)'>7</div>
+            <div class='btn circle off p7r' data-id='6' data-cls='p7r' onclick='handleBtnClick(this)'>7</div>
+        </div>
+
+        <div class='footer-container'>
+            <p><button onclick='unlockEditor()' id='lockBtn' style='background:transparent; color:#333; border:none; font-size:10px;'>.</button></p>
+            <div class='tsda-text'>TSDA ENGINEERING</div>
+            <div class='tsda-text' style="font-size: 16px;">071 200 1813</div>
+            <div class='gm-text'>Powered by GM Global Technology</div>
+        </div>
+
+        <div id='log-box'><button class='ctrl-btn' style='width:100%' onclick='copyToClipboard()'>Copy Code</button><pre id='coords'></pre></div>
+    </div>
+
+<script>
+    const AUTH_NUMBER = "0712001813";
+    let editMode = false; let activeBtn = null; let selectedEl = null;
+    const firebaseConfig = { apiKey: "AIzaSyA9iNAeq3aAtwHHqho84sodoeF6uipd6n4", databaseURL: "https://thorana-8-relay-default-rtdb.firebaseio.com" };
+
+    function checkLogin() {
+        const input = document.getElementById('phoneInput').value;
+        const error = document.getElementById('error-msg');
+        if(input === AUTH_NUMBER) {
+            document.getElementById('login-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('login-screen').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => main.style.opacity = '1', 50);
+                listenToFirebase();
+            }, 600);
+        } else {
+            error.style.display = 'block';
+            document.getElementById('phoneInput').style.borderColor = '#ff4757';
+        }
+    }
+
+    function listenToFirebase() {
+        const url = `${firebaseConfig.databaseURL}/relays.json?auth=${firebaseConfig.apiKey}`;
+        const source = new EventSource(url);
+        source.onmessage = e => {
+            const res = JSON.parse(e.data);
+            if (res.path === "/") { if (res.data) Object.keys(res.data).forEach(k => updateUI(k, res.data[k])); }
+            else if (res.path) updateUI(res.path.replace("/", ""), res.data);
+        };
+    }
+
+    function updateUI(key, status) {
+        let id = parseInt(key.replace("r", "")) - 1;
+        document.querySelectorAll(`[data-id='${id}']`).forEach(b => {
+            if(status) { b.classList.add('on'); b.classList.remove('off'); }
+            else { b.classList.remove('on'); b.classList.add('off'); }
+        });
+    }
+
+    function handleBtnClick(el) {
+        if(!editMode) {
+            let id = el.getAttribute('data-id');
+            let isCurrentlyOn = el.classList.contains('on');
+            let newStatus = !isCurrentlyOn;
+
+            document.querySelectorAll(`[data-id='${id}']`).forEach(b => {
+                if(newStatus) { b.classList.add('on'); b.classList.remove('off'); }
+                else { b.classList.remove('on'); b.classList.add('off'); }
+            });
+
+            fetch(`${firebaseConfig.databaseURL}/relays/r${parseInt(id)+1}.json?auth=${firebaseConfig.apiKey}`, {
+                method: 'PUT', body: JSON.stringify(newStatus)
+            });
+            return;
+        }
+        if(selectedEl) selectedEl.classList.remove('selected');
+        selectedEl = el; selectedEl.classList.add('selected');
+        document.getElementById('selName').innerText = 'Button ' + el.innerText;
+    }
+
+    function unlockEditor() { if(prompt('Admin Key:') == '4321') { editMode = true; document.getElementById('log-box').style.display='block'; document.getElementById('editor-controls').style.display='block'; document.getElementById('lockBtn').style.display='none'; updateLogs(); } }
+    function changeSize(d) { if(!selectedEl) return; let w = parseInt(selectedEl.style.width || getComputedStyle(selectedEl).width) + d; selectedEl.style.width = w + 'px'; selectedEl.style.height = (selectedEl.classList.contains('square') ? Math.round(w*1.37) : w) + 'px'; updateLogs(); }
+    
+    const container = document.getElementById('mainContainer');
+    container.onpointerdown = e => { if(editMode && e.target.classList.contains('btn')) activeBtn = e.target; };
+    container.onpointermove = e => { if(editMode && activeBtn) { const r = container.getBoundingClientRect(); activeBtn.style.left = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%'; activeBtn.style.top = ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%'; updateLogs(); } };
+    container.onpointerup = e => { activeBtn = null; };
+
+    function updateLogs() {
+        let log = ''; document.querySelectorAll('.btn').forEach(b => {
+            log += `.${b.getAttribute('data-cls')} { top: ${b.style.top || getComputedStyle(b).top}; left: ${b.style.left || getComputedStyle(b).left}; width: ${b.style.width || getComputedStyle(b).width}; height: ${b.style.height || getComputedStyle(b).height}; }\n`;
+        });
+        document.getElementById('coords').innerText = log;
+    }
+
+    function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('coords').innerText); alert('Coordinates Copied!'); }
+</script>
+</body>
+</html>
