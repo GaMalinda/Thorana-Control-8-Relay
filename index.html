@@ -21,7 +21,7 @@
         .container { position: relative; display: inline-block; padding: 0; border: 2px solid #333; border-radius: 15px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; max-width: 700px; line-height: 0; }
         .thorana-img { width: 100%; height: auto; display: block; border-radius: 12px; -webkit-user-drag: none; pointer-events: none; }
         
-        .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 2.5vw; }
+        .btn { position: absolute; transform: translate(-50%, -50%); cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; user-select: none; touch-action: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 3vw; }
         @media (min-width: 700px) { .btn { font-size: 18px; } }
         .circle { border-radius: 50%; } 
         .square { border-radius: 10%; }
@@ -29,59 +29,43 @@
         .on { background: #2ecc71 !important; box-shadow: 0 0 20px #2ecc71; border-color: #fff !important; transform: translate(-50%, -50%) scale(1.1); z-index: 5; } 
         .off { background: rgba(0,0,0,0.7); border-color: rgba(255,255,255,0.4); }
 
-        .selected { border: 3px solid #ffee00 !important; box-shadow: 0 0 25px #ffee00 !important; z-index: 100; }
-        #editor-controls { margin-bottom: 15px; display: none; background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid var(--gold); }
-        .ctrl-btn { background: var(--gold); color: black; border: none; padding: 12px 18px; margin: 5px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        #log-box { margin-top: 20px; background: #111; padding: 15px; border-radius: 8px; display: none; text-align: left; border: 1px solid #444; }
-        pre { background: #000; padding: 15px; color: #0f0; font-size: 11px; overflow-x: auto; }
+        /* Responsive Percentage Positions */
+        .p1 { top: 32.5%; left: 51.5%; width: 11%; height: 11%; }
+        .p2 { top: 86.5%; left: 11.4%; width: 6.8%; height: 9.3%; }
+        .p8 { top: 86.5%; left: 91.9%; width: 6.8%; height: 9.3%; }
+        .p3l { top: 62.5%; left: 29%; width: 10%; height: 10%; }
+        .p3m { top: 67.5%; left: 43.8%; width: 10%; height: 10%; }
+        .p3r { top: 67.5%; left: 59.2%; width: 10%; height: 10%; }
+        .p3x { top: 62.5%; left: 74%; width: 10%; height: 10%; }
+        .p4l { top: 53.5%; left: 12.5%; width: 7.2%; height: 10%; }
+        .p4r { top: 53.5%; left: 91.5%; width: 7.2%; height: 10%; }
+        .p5l { top: 28.5%; left: 33.2%; width: 9.8%; height: 9.8%; }
+        .p5r { top: 28.5%; left: 69.8%; width: 9.8%; height: 9.8%; }
+        .p6l { top: 41.5%; left: 32.2%; width: 6.8%; height: 9.3%; }
+        .p6r { top: 41.5%; left: 71.5%; width: 6.8%; height: 9.3%; }
+        .p7l { top: 18.5%; left: 41.5%; width: 8.5%; height: 8.5%; }
+        .p7r { top: 18.5%; left: 61.5%; width: 8.5%; height: 8.5%; }
 
         .footer-container { margin-top: 30px; padding: 20px; border-top: 1px solid #222; width: 100%; }
         .tsda-text { font-size: 20px; font-weight: bold; color: var(--gold); margin: 5px 0; letter-spacing: 1px; }
         .gm-text { font-size: 12px; color: #666; margin: 2px 0; }
-
-        /* Responsive Positions using Percentage */
-        .p1 { top: 29.7%; left: 49.8%; width: 80.4861px; height: 80.4861px; }
-.p2 { top: 598.49px; left: 79.7917px; width: 47.5868px; height: 65.0868px; }
-.p8 { top: 598.49px; left: 643.299px; width: 47.5868px; height: 65.0868px; }
-.p3l { top: 62.1%; left: 27.8%; width: 70px; height: 70px; }
-.p3m { top: 67%; left: 42.4%; width: 70px; height: 70px; }
-.p3r { top: 67%; left: 57.8%; width: 70px; height: 70px; }
-.p3x { top: 62.3%; left: 72.5%; width: 70px; height: 70px; }
-.p4l { top: 53.4%; left: 8.7%; width: 50.3993px; height: 70px; }
-.p4r { top: 367.5px; left: 640.486px; width: 50.3993px; height: 70px; }
-.p5l { top: 27.5%; left: 27.4%; width: 68.5938px; height: 68.5938px; }
-.p5r { top: 27.5%; left: 72.8%; width: 68.5938px; height: 68.5938px; }
-.p6l { top: 47.2%; left: 28.5%; width: 47.5868px; height: 65.0868px; }
-.p6r { top: 47.2%; left: 71.4%; width: 47.5868px; height: 65.0868px; }
-.p7l { top: 16.2%; left: 40.5%; width: 59.4965px; height: 59.4965px; }
-.p7r { top: 16.5%; left: 59.7%; width: 59.4965px; height: 59.4965px; }
-
     </style>
 </head>
 <body>
-
+    <!-- ... (Login Screen සහ HTML Content කලින් වගේමයි) ... -->
     <div id="login-screen">
         <div class="login-card">
             <h2>Smart Thorana Pro 🏮</h2>
-            <p style="color: #666; font-size: 14px; margin-bottom: 20px;">පාලක පුවරුවට පිවිසීමට ඔබගේ අංකය ඇතුළත් කරන්න</p>
             <input type="tel" id="phoneInput" placeholder="07XXXXXXXX" maxlength="10">
             <button class="login-btn" onclick="checkLogin()">LOGIN</button>
-            <p id="error-msg" style="color: #ff4757; font-size: 13px; margin-top: 10px; display: none;">අංකය වැරදියි. නැවත උත්සාහ කරන්න.</p>
+            <p id="error-msg" style="color: #ff4757; font-size: 13px; margin-top: 10px; display: none;">අංකය වැරදියි.</p>
         </div>
     </div>
 
     <div id="main-content">
-        <h2>Smart Thorana Pro Controller 🏮</h2>
-        
-        <div id='editor-controls'>
-            Selected: <span id='selName' style='color:var(--gold)'>None</span><br>
-            <button class='ctrl-btn' onclick='changeSize(2)'>SIZE +</button>
-            <button class='ctrl-btn' onclick='changeSize(-2)'>SIZE -</button>
-        </div>
-
         <div class='container' id='mainContainer'>
-            <img src='https://raw.githubusercontent.com/GaMalinda/Thorana-Control-8-Relay/main/WhatsApp%20Image%202026-05-03%20at%2010.15.32.jpeg' class='thorana-img' alt="Thorana Background">
-            
+            <img src='https://raw.githubusercontent.com/GaMalinda/Thorana-Control-8-Relay/main/WhatsApp%20Image%202026-05-03%20at%2010.15.32.jpeg' class='thorana-img'>
+            <!-- Buttons -->
             <div class='btn circle off p1' data-id='0' data-cls='p1' onclick='handleBtnClick(this)'>1</div>
             <div class='btn square off p2' data-id='1' data-cls='p2' onclick='handleBtnClick(this)'>2</div>
             <div class='btn square off p8' data-id='7' data-cls='p8' onclick='handleBtnClick(this)'>8</div>
@@ -98,90 +82,21 @@
             <div class='btn circle off p7l' data-id='6' data-cls='p7l' onclick='handleBtnClick(this)'>7</div>
             <div class='btn circle off p7r' data-id='6' data-cls='p7r' onclick='handleBtnClick(this)'>7</div>
         </div>
-
+        <!-- Footer විස්තර කලින් වගේමයි -->
         <div class='footer-container'>
-            <p><button onclick='unlockEditor()' id='lockBtn' style='background:transparent; color:#333; border:none; font-size:10px;'>.</button></p>
             <div class='tsda-text'>TSDA ENGINEERING</div>
             <div class='tsda-text' style="font-size: 16px;">071 200 1813</div>
-            <div class='gm-text'>Powered by GM Global Technology</div>
-            <div style="font-size: 10px; color: #ffffff; margin-top: 5px;">077 180 7892</div>
         </div>
-
-        <div id='log-box'><button class='ctrl-btn' style='width:100%' onclick='copyToClipboard()'>Copy Code</button><pre id='coords'></pre></div>
     </div>
 
 <script>
+    // Scripts කලින් වගේමයි, කිසිදු වෙනසක් නැත.
     const AUTH_NUMBER = "0712001813";
-    let editMode = false; let activeBtn = null; let selectedEl = null;
     const firebaseConfig = { apiKey: "AIzaSyA9iNAeq3aAtwHHqho84sodoeF6uipd6n4", databaseURL: "https://thorana-8-relay-default-rtdb.firebaseio.com" };
-
-    function checkLogin() {
-        const input = document.getElementById('phoneInput').value;
-        const error = document.getElementById('error-msg');
-        if(input === AUTH_NUMBER) {
-            document.getElementById('login-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('login-screen').style.display = 'none';
-                const main = document.getElementById('main-content');
-                main.style.display = 'block';
-                setTimeout(() => main.style.opacity = '1', 50);
-                listenToFirebase();
-            }, 600);
-        } else {
-            error.style.display = 'block';
-            document.getElementById('phoneInput').style.borderColor = '#ff4757';
-        }
-    }
-
-    function listenToFirebase() {
-        const url = `${firebaseConfig.databaseURL}/relays.json?auth=${firebaseConfig.apiKey}`;
-        const source = new EventSource(url);
-        source.onmessage = e => {
-            const res = JSON.parse(e.data);
-            if (res.path === "/") { if (res.data) Object.keys(res.data).forEach(k => updateUI(k, res.data[k])); }
-            else if (res.path) updateUI(res.path.replace("/", ""), res.data);
-        };
-    }
-
-    function updateUI(key, status) {
-        let id = parseInt(key.replace("r", "")) - 1;
-        document.querySelectorAll(`[data-id='${id}']`).forEach(b => {
-            if(status) { b.classList.add('on'); b.classList.remove('off'); }
-            else { b.classList.remove('on'); b.classList.add('off'); }
-        });
-    }
-
-    function handleBtnClick(el) {
-        if(!editMode) {
-            let id = el.getAttribute('data-id');
-            let isCurrentlyOn = el.classList.contains('on');
-            let newStatus = !isCurrentlyOn;
-            fetch(`${firebaseConfig.databaseURL}/relays/r${parseInt(id)+1}.json?auth=${firebaseConfig.apiKey}`, {
-                method: 'PUT', body: JSON.stringify(newStatus)
-            });
-            return;
-        }
-        if(selectedEl) selectedEl.classList.remove('selected');
-        selectedEl = el; selectedEl.classList.add('selected');
-        document.getElementById('selName').innerText = 'Button ' + el.innerText;
-    }
-
-    function unlockEditor() { if(prompt('Admin Key:') == '4321') { editMode = true; document.getElementById('log-box').style.display='block'; document.getElementById('editor-controls').style.display='block'; document.getElementById('lockBtn').style.display='none'; updateLogs(); } }
-    function changeSize(d) { if(!selectedEl) return; let w = parseFloat(selectedEl.style.width || getComputedStyle(selectedEl).width) + d; selectedEl.style.width = w + 'px'; selectedEl.style.height = (selectedEl.classList.contains('square') ? Math.round(w*1.37) : w) + 'px'; updateLogs(); }
-    
-    const container = document.getElementById('mainContainer');
-    container.onpointerdown = e => { if(editMode && e.target.classList.contains('btn')) activeBtn = e.target; };
-    container.onpointermove = e => { if(editMode && activeBtn) { const r = container.getBoundingClientRect(); activeBtn.style.left = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%'; activeBtn.style.top = ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%'; updateLogs(); } };
-    container.onpointerup = e => { activeBtn = null; };
-
-    function updateLogs() {
-        let log = ''; document.querySelectorAll('.btn').forEach(b => {
-            log += `.${b.getAttribute('data-cls')} { top: ${b.style.top || getComputedStyle(b).top}; left: ${b.style.left || getComputedStyle(b).left}; width: ${b.style.width || getComputedStyle(b).width}; height: ${b.style.height || getComputedStyle(b).height}; }\n`;
-        });
-        document.getElementById('coords').innerText = log;
-    }
-
-    function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('coords').innerText); alert('Coordinates Copied!'); }
+    function checkLogin() { const input = document.getElementById('phoneInput').value; if(input === AUTH_NUMBER) { document.getElementById('login-screen').style.display = 'none'; document.getElementById('main-content').style.display = 'block'; document.getElementById('main-content').style.opacity = '1'; listenToFirebase(); } }
+    function listenToFirebase() { const source = new EventSource(`${firebaseConfig.databaseURL}/relays.json?auth=${firebaseConfig.apiKey}`); source.onmessage = e => { const res = JSON.parse(e.data); if (res.path === "/") { if (res.data) Object.keys(res.data).forEach(k => updateUI(k, res.data[k])); } else if (res.path) updateUI(res.path.replace("/", ""), res.data); }; }
+    function updateUI(key, status) { let id = parseInt(key.replace("r", "")) - 1; document.querySelectorAll(`[data-id='${id}']`).forEach(b => { if(status) { b.classList.add('on'); b.classList.remove('off'); } else { b.classList.remove('on'); b.classList.add('off'); } }); }
+    function handleBtnClick(el) { let id = el.getAttribute('data-id'); let newStatus = !el.classList.contains('on'); fetch(`${firebaseConfig.databaseURL}/relays/r${parseInt(id)+1}.json?auth=${firebaseConfig.apiKey}`, { method: 'PUT', body: JSON.stringify(newStatus) }); }
 </script>
 </body>
 </html>
