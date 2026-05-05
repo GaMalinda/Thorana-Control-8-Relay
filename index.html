@@ -3,7 +3,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-    <title>Smart Thorana Pro Controller 🏮</title>
+    <title>Smart Controller 🏮</title>
     <style>
         :root { --gold: #d4af37; --bg: #0a0a0a; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: var(--bg); color: white; margin: 0; padding: 10px; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -37,9 +37,21 @@
         #log-box { margin-top: 20px; background: #111; padding: 15px; border-radius: 8px; display: none; text-align: left; border: 1px solid #444; }
         pre { background: #000; padding: 15px; color: #0f0; font-size: 11px; overflow-x: auto; }
 
-        .footer-container { margin-top: 30px; padding: 20px; border-top: 1px solid #222; width: 100%; }
-        .tsda-text { font-size: 20px; font-weight: bold; color: var(--gold); margin: 5px 0; letter-spacing: 1px; }
-        .gm-text { font-size: 12px; color: #666; margin: 2px 0; }
+        .footer-container {
+    display: flex;
+    flex-direction: column; /* එක යට එක දත්ත පෙන්වීමට */
+    align-items: center;    /* හරස් අතට මැදට ගැනීමට (Horizontal center) */
+    justify-content: center; /* සිරස් අතට මැදට ගැනීමට (Vertical center) */
+    text-align: center;      /* අකුරු මැදට ගැනීමට */
+    width: 100%;
+    margin-top: 20px;       /* ඉහළින් පොඩි ඉඩක් තැබීමට */
+    padding-bottom: 10px;
+}
+
+.tsda-text, .gm-text {
+    width: 100%;            /* සම්පූර්ණ පළල අරගෙන මැදට වීමට */
+    margin: 2px 0;          /* පේළි අතර පොඩි ඉඩක් තැබීමට */
+}
 
         /* ALL Sizes and Positions converted to % for perfect responsiveness */
         .p1 { top: 31.3%; left: 50.4%; width: 11%; height: 11%; }
@@ -64,9 +76,9 @@
     <!-- HTML & Scripts ඒ විදිහටම තියෙනවා... -->
     <div id="login-screen">
         <div class="login-card">
-            <h2>Smart Thorana Pro 🏮</h2>
+            <h2>නිග්‍රෝධමික ජාතකය🏮</h2>
             <p style="color: #666; font-size: 14px; margin-bottom: 20px;">පාලක පුවරුවට පිවිසීමට ඔබගේ අංකය ඇතුළත් කරන්න</p>
-            <input type="tel" id="phoneInput" placeholder="07XXXXXXXX" maxlength="10">
+            <input type="tel" id="phoneInput" placeholder="0XXXXXXXXX" maxlength="10">
             <button class="login-btn" onclick="checkLogin()">LOGIN</button>
             <p id="error-msg" style="color: #ff4757; font-size: 13px; margin-top: 10px; display: none;">අංකය වැරදියි. නැවත උත්සාහ කරන්න.</p>
         </div>
@@ -104,7 +116,7 @@
             <div class='tsda-text'>TSDA ENGINEERING</div>
             <div class='tsda-text' style="font-size: 16px;">071 200 1813</div>
             <div class='gm-text'>Powered by GM Global Technology</div>
-            <div style="font-size: 10px; color: #ffffff; margin-top: 5px;">077 180 7892</div>
+            <div id="myNumber" style="font-size: 10px; color: #ffffff; margin-top: 5px; display: none;">077 180 7892</div>
         </div>
         <div id='log-box'><button class='ctrl-btn' style='width:100%' onclick='copyToClipboard()'>Copy Code</button><pre id='coords'></pre></div>
     </div>
@@ -169,8 +181,19 @@
         document.getElementById('selName').innerText = 'Button ' + el.innerText;
     }
 
-    function unlockEditor() { if(prompt('Admin Key:') == '4321') { editMode = true; document.getElementById('log-box').style.display='block'; document.getElementById('editor-controls').style.display='block'; document.getElementById('lockBtn').style.display='none'; updateLogs(); } }
-    
+    function unlockEditor() { 
+    if(prompt('Admin Key:') == '4321') { 
+        editMode = true; 
+        
+        // මේ පේළිය අලුතින් එකතු කරන්න - එවිට Admin Key එක දුන් පසු අංකය පෙනේවි
+        document.getElementById('myNumber').style.display = 'block'; 
+
+        document.getElementById('log-box').style.display='block'; 
+        document.getElementById('editor-controls').style.display='block'; 
+        document.getElementById('lockBtn').style.display='none'; 
+        updateLogs(); 
+    } 
+}
     // Updated changeSize for % support
     function changeSize(d) { 
         if(!selectedEl) return; 
